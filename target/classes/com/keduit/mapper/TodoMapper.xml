@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.keduit.mapper.TodoMapper">
+  
+  <select id="getList" resultType="com.keduit.domain.TodoVO">
+  	select*from t_todo order by tno desc
+  </select>
+  
+  <insert id="insert">
+  	insert into t_todo(tno, title, writer, finished)
+  	values(seq_todo.nextval, #{title}, #{writer}, #{finished})
+  </insert>
+  
+  
+  <insert id="insertSelectKey">
+  	<selectKey keyProperty="tno" order="BEFORE"
+  		resultType="long">
+  		select seq_todo.nextval from dual
+  	</selectKey>
+  	insert into t_todo(tno, title, writer, finished, dueDate)
+  	values(#{tno}, #{title}, #{writer}, #{finished}, #{dueDate})
+  </insert>
+  
+  <select id="read" resultType="com.keduit.domain.TodoVO">
+  	select*from t_todo where tno=#{tno}
+  </select>
+  
+  <delete id="delete">
+  	delete from t_todo where tno=#{tno}
+  </delete>
+  
+  <update id="update">
+  	update t_todo set title=#{title},
+  						writer=#{writer},
+  						finished=#{finished},
+  						dueDate=#{dueDate}
+  							where tno=#{tno}
+  						
+  </update>
+  
+  <select id="getListWithPaging" resultType="com.keduit.domain.TodoVO">
+  	select tno, title, dueDate, writer, finished, regdate
+  	from (
+  	select
+  	/*+ index_desc(t_todo SYS_C007025)*/
+  	rownum rn, tno, title, dueDate, writer, finished, regdate
+  	from t_todo
+  	
+  	<![CDATA[
+  	where rownum<= #{pageNum}*#{amount}
+  		)
+  	where rn > (#{pageNum}-1)*#{amount}
+  	]]>
+  </select>
+  
+  <select id="getTotalCount" resultType="int">
+	select count(*)from t_todo
+	where tno>0  
+  </select>
+  
+  </mapper>
