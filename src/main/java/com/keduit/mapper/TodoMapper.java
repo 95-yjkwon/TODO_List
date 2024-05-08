@@ -2,8 +2,6 @@ package com.keduit.mapper;
 
 import java.util.List;
 
-import com.keduit.domain.BoardVO;
-
 import com.keduit.domain.TodoVO;
 
 public interface TodoMapper {

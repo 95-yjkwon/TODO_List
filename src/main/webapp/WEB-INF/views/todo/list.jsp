@@ -6,7 +6,7 @@
 <%@include file="../includes/header.jsp"%>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">용춘권의 뚜뚜리스트</h1>
+		<h1 class="page-header">오늘의 할 일</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -59,17 +59,8 @@
 				</table>
 				<!-- /.table-responsive -->
 
-				
-
-
-
-				
-	<!-- 페이지 처리를 위한 form tag추가 -->
-				<form id='actionForm' action="/board/list" method="get">
-					
-				</form>
-
-
+				<!-- title을 눌렀을 때 상세 페이지로 이동 -->
+				<form id="actionForm" action="/todo/list" method="get"></form>
 
 				<!-- Modal -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -114,13 +105,6 @@
         })
 
         const actionForm = $("#actionForm");
-        $(".paginate_button a").on("click", function(e){
-            e.preventDefault();
-            console.log("click임");
-            actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-            actionForm.submit();
-        })
-
         $(".move").on("click", function(e){
             console.log("move임");
             e.preventDefault();
@@ -131,25 +115,7 @@
             actionForm.submit();
         })
 
-        /* 검색 버튼의 이벤트 처리 */
-        const searchForm = $("#searchForm");
-
-        $("#searchForm button").on("click", function(e){
-            if (!searchForm.find("option:selected").val()){
-              alert("검색 종류를 선택하세요.")
-              return false;
-            }
-
-            if(!searchForm.find("input[name='keyword']").val()){
-                alert("검색어를 입력하세요.");
-                return false;
-            }
-
-            searchForm.find("input[name='pageNum']").val("1");
-            e.preventDefault();
-
-            searchForm.submit();
-        })
+       
 
         function checkModal(result) {
             if (result === '') {

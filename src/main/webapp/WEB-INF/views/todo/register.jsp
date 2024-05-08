@@ -13,7 +13,7 @@
 <body>
 	<div class="row">
 		<div class="col-lg-10">
-			<h1 class="page-header">뚜뚜리스트 등록</h1>
+			<h1 class="page-header">투두리스트 등록</h1>
 		</div>
 		<!-- /.col-lg-12 -->
 	</div>
@@ -21,7 +21,7 @@
 	<div class="row">
 		<div class="col-lg-10">
 			<div class="panel panel-default">
-				<div class="panel-heading">뚜뚜 등록</div>
+				<div class="panel-heading">투두리스트 등록</div>
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-lg-10">

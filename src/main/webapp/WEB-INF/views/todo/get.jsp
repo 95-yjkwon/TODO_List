@@ -73,7 +73,7 @@
 								<button data-oper='list' class="btn btn-info">목록</button>
 
 								<!-- 페이지 이동 처리를 위한 수정 -->
-								<form id="operForm" action="/board/modify" method="GET">
+								<form id="operForm" action="/todo/modify" method="GET">
 									<input type="hidden" id="tno" name="tno" value="${todo.tno}" />
 
 								</form>
